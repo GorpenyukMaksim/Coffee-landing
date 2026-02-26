@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hora Coffee — Путешествие за кофе</title>
+    
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <!-- Основные стили -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Адаптивные стили -->
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <div class="container">
+            <a href="#hero" class="logo">
+                <span class="logo-icon">☕</span>
+                Hora Coffee
+            </a>
+            
+            <nav class="nav">
+                <ul class="nav-menu">
+                    <li><a href="#hero" class="nav-link">Главная</a></li>
+                    <li><a href="#benefits" class="nav-link">Преимущества</a></li>
+                    <li><a href="#products" class="nav-link">Наборы</a></li>
+                    <li><a href="#stories" class="nav-link">Истории</a></li>
+                    <li><a href="#club" class="nav-link">Клуб</a></li>
+                    <li><a href="#reviews" class="nav-link">Отзывы</a></li>
+                    <li><a href="#contact" class="nav-link">Контакты</a></li>
+                </ul>
+            </nav>
+            
+            <div class="cart">
+                <button class="cart-btn" id="cartBtn" onclick="window.location.href='#cart'">
+                    <svg class="cart-icon" viewBox="0 0 24 24" width="24" height="24">
+                        <path fill="currentColor" d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+                    </svg>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ===== КОРЗИНА (модальное окно) ===== -->
+    <div id="cart" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="window.location.href='#'">&times;</span>
+            <h2 class="modal-title">Ваша корзина</h2>
+            <div id="cartItems" class="cart-items">
+                <!-- Товары будут добавляться сюда через JavaScript -->
+            </div>
+            <div class="cart-total">
+                <span>Итого:</span>
+                <span id="cartTotalPrice">0 ₽</span>
+            </div>
+            <button class="btn btn-primary" id="checkoutBtn" onclick="showThankYouModal()">Оформить заказ</button>
+        </div>
+    </div>
+
+    <!-- ===== МОДАЛЬНОЕ ОКНО "СПАСИБО" ===== -->
+<div id="thankYouModal" class="modal">
+    <div class="modal-content thank-you-content">
+        <span class="modal-close" onclick="closeThankYouModal()">&times;</span>
+        <div class="thank-you-icon">🎉</div>
+        <h2 class="thank-you-title">Спасибо за заказ!</h2>
+        <p class="thank-you-text">Ваш набор «Путешествие по континентам» уже собирается. Мы отправим вам трек-номер на email в течение часа.</p>
+        
+        <div class="club-question">
+            <h3 class="club-question-title">Заинтересовал ли вас Клуб дегустаторов?</h3>
+            <p class="club-question-text">Получайте новый редкий сорт с историей 16-го числа каждого месяца со скидкой 30%</p>
+            
+            <div class="club-question-buttons">
+                <button class="btn btn-primary" onclick="goToClub()">Да, хочу в клуб</button>
+                <button class="btn btn-primary" onclick="closeThankYouModal()">Нет, спасибо</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section id="hero" class="hero" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/hero/home-bg.jpg') center/cover no-repeat;">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Устали от одного и того же кофе?</h1>
+                <p class="hero-subtitle">Откройте для себя 4 уникальных сорта с разных континентов. <span class="discount-badge">Скидка 20% на первый набор</span></p>
+                <div class="hero-buttons">
+                    <a href="#products" class="btn btn-primary">Начать путешествие</a>
+                    <a href="#stories" class="btn btn-secondary">Узнать истории</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BENEFITS SECTION ===== -->
+    <section id="benefits" class="benefits">
+        <div class="container">
+            <h2 class="section-title">Почему выбирают Hora Coffee</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">✈️</div>
+                    <h3 class="benefit-title">От фермера к вам</h3>
+                    <p class="benefit-text">Прямые поставки из Вьетнама, Африки и Южной Америки. Никаких посредников.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">📚</div>
+                    <h3 class="benefit-title">История в каждой чашке</h3>
+                    <p class="benefit-text">Открытка с фото фермера и рассказом о регионе в каждом наборе.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">💰</div>
+                    <h3 class="benefit-title">Дешевле на 20%</h3>
+                    <p class="benefit-text">Экономия 1120₽ на первом наборе по сравнению с покупкой по отдельности.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎁</div>
+                    <h3 class="benefit-title">Сюрприз каждый месяц</h3>
+                    <p class="benefit-text">Клуб дегустаторов: новый редкий сорт с историей ежемесячно.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PRODUCTS SECTION ===== -->
+    <section id="products" class="products">
+        <div class="container">
+            <h2 class="section-title">Набор «Путешествие по континентам»</h2>
+            <div class="products-grid">
+                <div class="product-card" data-product="vietnam" data-price="448">
+                    <img src="images/products/menu-1.png" alt="Вьетнам" class="product-img">
+                    <h3 class="product-title">Вьетнам, Далат</h3>
+                    <p class="product-price"><span class="old-price">560₽</span> <strong class="new-price">448₽</strong></p>
+                    <button class="btn btn-primary add-to-cart">В корзину</button>
+                </div>
+                
+                <div class="product-card" data-product="ethiopia" data-price="448">
+                    <img src="images/products/menu-2.png" alt="Эфиопия" class="product-img">
+                    <h3 class="product-title">Эфиопия, Йргачеффе</h3>
+                    <p class="product-price"><span class="old-price">560₽</span> <strong class="new-price">448₽</strong></p>
+                    <button class="btn btn-primary add-to-cart">В корзину</button>
+                </div>
+                
+                <div class="product-card" data-product="colombia" data-price="448">
+                    <img src="images/products/menu-3.png" alt="Колумбия" class="product-img">
+                    <h3 class="product-title">Колумбия, Уила</h3>
+                    <p class="product-price"><span class="old-price">560₽</span> <strong class="new-price">448₽</strong></p>
+                    <button class="btn btn-primary add-to-cart">В корзину</button>
+                </div>
+                
+                <div class="product-card" data-product="indonesia" data-price="448">
+                    <img src="images/products/menu-4.png" alt="Индонезия" class="product-img">
+                    <h3 class="product-title">Индонезия, Суматра</h3>
+                    <p class="product-price"><span class="old-price">560₽</span> <strong class="new-price">448₽</strong></p>
+                    <button class="btn btn-primary add-to-cart">В корзину</button>
+                </div>
+            </div>
+            
+            <!-- Цена набора -->
+            <div class="set-price-container">
+                <p class="set-price-label">Цена набора:</p>
+                <p class="set-old-price">5 600 ₽</p>
+                <p class="set-new-price">4 480 ₽</p>
+                <p class="set-savings">Экономия 1120 ₽ (20%)</p>
+                <button class="btn btn-primary" id="addSetToCart" onclick="addSetToCart()">Добавить весь набор в корзину</button>
+            </div>
+            
+            <!-- Анонс Клуба дегустаторов -->
+            <div class="club-teaser">
+                <h3 class="club-teaser-title">Хотите сюрприз каждый месяц?</h3>
+                <p class="club-teaser-text">Вступайте в Клуб дегустаторов и получайте новый редкий сорт с историей 16-го числа каждого месяца.</p>
+                <a href="#club" class="btn btn-secondary">Подробнее о клубе</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== STORIES SECTION ===== -->
+    <section id="stories" class="stories">
+        <div class="container">
+            <h2 class="section-title">Истории наших сортов</h2>
+            <div class="stories-grid">
+                <div class="story-card">
+                    <img src="images/stories/g-img-1.jpg" alt="Вьетнам" class="story-img">
+                    <div class="story-content">
+                        <h3 class="story-title">Вьетнам, Далат</h3>
+                        <p class="story-text">Семья Нгуен выращивает этот сорт на высоте 1500 метров. Ручной сбор, мытая обработка. Вкус: цветочные ноты, медовое послевкусие.</p>
+                    </div>
+                </div>
+                
+                <div class="story-card">
+                    <img src="images/stories/g-img-2.jpg" alt="Эфиопия" class="story-img">
+                    <div class="story-content">
+                        <h3 class="story-title">Эфиопия, Йргачеффе</h3>
+                        <p class="story-text">Дикорастущий кофе из лесов Эфиопии. Натуральная обработка. Вкус: черника, шоколад, долгое ягодное послевкусие.</p>
+                    </div>
+                </div>
+                
+                <div class="story-card">
+                    <img src="images/stories/g-img-3.jpg" alt="Колумбия" class="story-img">
+                    <div class="story-content">
+                        <h3 class="story-title">Колумбия, Уила</h3>
+                        <p class="story-text">Высокогорный кофе с Анд. Семейная ферма Лопес. Вкус: карамель, орехи, шоколад, плотное тело.</p>
+                    </div>
+                </div>
+                
+                <div class="story-card">
+                    <img src="images/stories/g-img-4.jpg" alt="Индонезия" class="story-img">
+                    <div class="story-content">
+                        <h3 class="story-title">Индонезия, Суматра</h3>
+                        <p class="story-text">Традиционная обработка глинг басах. Пряные ноты, травы, табак, низкая кислина.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CLUB SECTION ===== -->
+    <section id="club" class="club">
+        <div class="container">
+            <h2 class="section-title">Клуб дегустаторов «Кофе-сюрприз месяца»</h2>
+            
+            <div class="club-grid">
+                <div class="club-image">
+                    <img src="images/stories/g-img-5.jpg" alt="Клуб дегустаторов" class="club-img">
+                </div>
+                
+                <div class="club-content">
+                    <div class="club-feature">
+                        <span class="club-icon">🌍</span>
+                        <div class="club-feature-text">
+                            <h3>Новый сорт каждый месяц</h3>
+                            <p>Мы специально ищем редкие сорта по всему миру, чтобы вы могли открывать новые вкусы.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="club-feature">
+                        <span class="club-icon">📬</span>
+                        <div class="club-feature-text">
+                            <h3>Открытка с историей</h3>
+                            <p>Фото фермера, рассказ о регионе, методе обработки и вкусовых нотах.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="club-feature">
+                        <span class="club-icon">📝</span>
+                        <div class="club-feature-text">
+                            <h3>Рекомендации по завариванию</h3>
+                            <p>Идеальный рецепт для каждого сорта, чтобы раскрыть его лучший вкус.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="club-feature">
+                        <span class="club-icon">📅</span>
+                        <div class="club-feature-text">
+                            <h3>16-го числа каждого месяца</h3>
+                            <p>Подписка приходит 16-го числа. Первая посылка — со скидкой 30% для участников клуба.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="club-price">
+                        <p class="club-old-price">~~1 200 ₽/мес~~</p>
+                        <p class="club-new-price">840 ₽/мес</p>
+                        <p class="club-savings">Экономия 30%</p>
+                    </div>
+                    
+                    <button class="btn btn-primary btn-large" onclick="alert('Спасибо за подписку! Мы свяжемся с вами.')">Вступить в клуб</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== REVIEWS SECTION ===== -->
+    <section id="reviews" class="reviews">
+        <div class="container">
+            <h2 class="section-title">Что говорят наши путешественники</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <img src="images/reviews/pic-1.png" alt="Анна" class="review-avatar">
+                    <h3 class="review-name">Антон, 23 года</h3>
+                    <p class="review-text">«Заказал набор "Путешествие". Кофе из Вьетнама — просто открытие! А открытка с фермером такая трогательная. Теперь хочу в клуб».</p>
+                    <div class="review-stars">★★★★★</div>
+                </div>
+                
+                <div class="review-card">
+                    <img src="images/reviews/pic-2.png" alt="Максим" class="review-avatar">
+                    <h3 class="review-name">Екатерина, 27 лет</h3>
+                    <p class="review-text">«Давно искала что-то необычное. Эфиопский сорт с черничным вкусом — вау! И цена со скидкой очень порадовала».</p>
+                    <div class="review-stars">★★★★★</div>
+                </div>
+                
+                <div class="review-card">
+                    <img src="images/reviews/pic-3.png" alt="Екатерина" class="review-avatar">
+                    <h3 class="review-name">Максим, 21 год</h3>
+                    <p class="review-text">«Подарил набор девушке-кофеманше. Она в восторге от историй про фермеров. Уже подписались на клуб вместе!»</p>
+                    <div class="review-stars">★★★★★</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT SECTION ===== -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Остались вопросы?</h2>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3 class="contact-subtitle">Свяжитесь с нами</h3>
+                    <p class="contact-email"><strong>Email:</strong> info@horacoffee.ru</p>
+                    <p class="contact-delivery"><strong>Доставка:</strong> по всей России</p>
+                    <p class="contact-partner"><strong>Партнеры:</strong> напрямую из Вьетнама</p>
+                </div>
+                <form class="contact-form" id="contactForm" onsubmit="event.preventDefault(); alert('Спасибо! Мы ответим вам в ближайшее время.'); this.reset();">
+                    <input type="text" placeholder="Ваше имя" class="form-input" required>
+                    <input type="email" placeholder="Email" class="form-input" required>
+                    <textarea placeholder="Ваш вопрос" class="form-textarea" rows="4" required></textarea>
+                    <button type="submit" class="btn btn-primary">Отправить</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FINAL CTA SECTION ===== -->
+    <section id="cta" class="cta" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/cta/newsletter-bg.jpg') center/cover no-repeat;">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Готовы к новым вкусам?</h2>
+                <p class="cta-text">Откройте для себя 4 континента в одной коробке со скидкой 20%</p>
+                <a href="#products" class="btn btn-primary btn-large">Выбрать набор сейчас</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="#" class="logo">☕ Hora Coffee</a>
+                    <p class="footer-tagline">Путешествие за кофе по всему миру</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4 class="footer-title">Навигация</h4>
+                    <ul class="footer-menu">
+                        <li><a href="#hero">Главная</a></li>
+                        <li><a href="#benefits">Преимущества</a></li>
+                        <li><a href="#products">Наборы</a></li>
+                        <li><a href="#stories">Истории</a></li>
+                        <li><a href="#club">Клуб</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <h4 class="footer-title">Мы в соцсетях</h4>
+                    <div class="social-icons">
+                        <a href="https://instagram.com" target="_blank" class="social-icon">📷</a>
+                        <a href="https://tiktok.com" target="_blank" class="social-icon">🎵</a>
+                        <a href="https://youtube.com" target="_blank" class="social-icon">▶️</a>
+                    </div>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4 class="footer-title">Контакты</h4>
+                    <p>info@horacoffee.ru</p>
+                    <p>Доставка по России</p>
+                    <p>Работаем с Вьетнамом</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2026 Hora Coffee. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Скрипты -->
+    <script src="js/smooth-scroll.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
