@@ -120,3 +120,17 @@ window.addEventListener('click', function(event) {
         window.location.href = '#';
     }
 });
+
+// Кэширование данных о товарах (если они не меняются часто)
+if (!localStorage.getItem('products')) {
+  // Первый раз - сохраняем
+  const products = {
+    vietnam: { name: 'Вьетнам, Далат', price: 448 },
+    ethiopia: { name: 'Эфиопия, Йргачеффе', price: 448 },
+    // ...
+  };
+  localStorage.setItem('products', JSON.stringify(products));
+}
+
+// При следующих загрузках используем из кэша
+const cachedProducts = JSON.parse(localStorage.getItem('products'));
