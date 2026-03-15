@@ -27,6 +27,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 nav.classList.remove('active');
                 menuBtn.classList.remove('active');
             }
+            // Debounce функция для оптимизации
+            function debounce(func, wait) {
+            let timeout;
+                return function executedFunction(...args) {
+            const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+                };
+            }
+
+            // Используем для скролла
+            window.addEventListener('scroll', debounce(() => {
+                // Ваш код для скролла
+                console.log('Скролл обработан с задержкой');
+            }, 100));
         });
     });
 });
